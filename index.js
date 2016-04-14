@@ -163,9 +163,10 @@ Hbs.prototype.createRenderer = function() {
     locals = merge(this.state || {}, locals || {});
     locals = merge(hbs.locals, locals);
 
+    var partialsPathEmpty = (!hbs.partialsPath || hbs.partialsPath.length == 0)
     // Initialization... move these actions into another function to remove
     // unnecessary checks
-    if(!hbs.partialsRegistered && hbs.partialsPath !== '') {
+    if( !partialsPathEmpty && !hbs.disableCache && !hbs.partialsRegistered) {
       yield hbs.registerPartials();
     }
 
