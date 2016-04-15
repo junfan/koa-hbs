@@ -166,8 +166,8 @@ Hbs.prototype.createRenderer = function() {
     var partialsPathEmpty = (!hbs.partialsPath || hbs.partialsPath.length == 0)
     // Initialization... move these actions into another function to remove
     // unnecessary checks
-    if( !partialsPathEmpty && !hbs.disableCache && !hbs.partialsRegistered) {
-      yield hbs.registerPartials();
+    if( !partialsPathEmpty && (!hbs.partialsRegistered || hbs.disableCache)) {
+        yield hbs.registerPartials();
     }
 
     // Load the template
